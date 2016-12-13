@@ -1,0 +1,6 @@
+# boolean
+BOOLEAN_VALUE = ${boolean_value}
+# string
+STRING_VALUE = "${string_value}"
+# list
+LIST_VALUE = ${list_value}
