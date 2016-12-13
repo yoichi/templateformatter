@@ -45,3 +45,14 @@ class TemplateFormatter(object):
         """
         with open(output_path, 'w') as of:
             of.write(self.substitute(template_path))
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) < 2:
+        print('usage: {0} template_path [yaml_path ...]'.format(sys.argv[0]))
+        sys.exit(-1)
+    template_path = sys.argv[1]
+    yaml_list = sys.argv[2:]
+    formatter = TemplateFormatter(yaml_list)
+    print(formatter.substitute(template_path))
