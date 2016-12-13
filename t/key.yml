@@ -1,0 +1,6 @@
+boolean_value: False
+string_value: This is a string
+list_value:
+- one
+- 2
+- three
