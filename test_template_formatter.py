@@ -24,6 +24,15 @@ class TestTemplateFormatter(unittest.TestCase):
         with self.assertRaises(KeyError):
             formatter.substitute('t/ascii.py.template')
 
+    def test_confusing(self):
+        formatter = TemplateFormatter([])
+        formatter.substitute_to_file('t/confusing.py.template',
+                                     't/confusing_output.py')
+        self._test_same_content('t/confusing.py.template',
+                                't/confusing_output.py')
+        import t.confusing_output as confusing
+        self.assertEqual(confusing.CONFUSING, '${')
+
     def test_utf8_to_file(self):
         formatter = TemplateFormatter(['t/key.yml'])
         formatter.substitute_to_file('t/utf8.py.template',

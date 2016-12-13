@@ -1,0 +1,2 @@
+# workaround for ValueError: Invalid placeholder in string
+CONFUSING = '\x24{'
