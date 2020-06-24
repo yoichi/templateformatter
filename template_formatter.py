@@ -21,7 +21,7 @@ class TemplateFormatter(object):
         self._format_dict = {}
         for path in yaml_list:
             with open(path) as f:
-                data = yaml.load(f)
+                data = yaml.safe_load(f)
                 assert isinstance(data, dict)
                 self._format_dict.update(data)
 
