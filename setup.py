@@ -7,5 +7,5 @@ setuptools.setup(
     author_email='yoichi.nakayama@gmail.com',
     py_modules=['template_formatter'],
     test_suite='test_template_formatter',
-    tests_require=['pyyaml']
+    tests_require=['pyyaml', 'chardet']
 )

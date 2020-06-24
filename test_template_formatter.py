@@ -6,9 +6,9 @@ from template_formatter import TemplateFormatter
 
 class TestTemplateFormatter(unittest.TestCase):
     def _test_same_content(self, path1, path2):
-        with open(path1) as f1:
+        with open(path1, 'rb') as f1:
             c1 = f1.read()
-        with open(path2) as f2:
+        with open(path2, 'rb') as f2:
             c2 = f2.read()
         self.assertEqual(c1, c2)
 

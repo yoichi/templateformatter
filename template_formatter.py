@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from string import Template
+import chardet
 import yaml
 
 
@@ -31,11 +32,13 @@ class TemplateFormatter(object):
         :param str template_path: template file path
 
         :return: formatted string
-        :rtype: str
+        :rtype: byte
         """
-        with open(template_path) as f:
-            template = Template(f.read())
-        return template.substitute(**self._format_dict)
+        with open(template_path, 'rb') as f:
+            rawdata = f.read()
+        encoding = chardet.detect(rawdata)['encoding']
+        template = Template(rawdata.decode(encoding, 'strict'))
+        return template.substitute(**self._format_dict).encode(encoding, 'strict')
 
     def substitute_to_file(self, template_path, output_path):
         """Read template file and write substituted string to a file.
@@ -43,7 +46,7 @@ class TemplateFormatter(object):
         :param str template_path: template file path
         :param str output_path: output file path
         """
-        with open(output_path, 'w') as of:
+        with open(output_path, 'wb') as of:
             of.write(self.substitute(template_path))
 
 
